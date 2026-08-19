@@ -117,10 +117,18 @@ export default async ({ req, res, error }: Context) => {
   }
 }
 
-/** Convert the Appwrite request object into a web-standard Request. */
+/** Convert the Appwrite request object into a web-standard Request.
+ *
+ *  TLS ends at Appwrite's proxy, so the function itself receives plain http
+ *  and must not advertise that scheme in the URLs it builds about itself.
+ *  Everything off localhost is reachable only through https.
+ */
 function toWebRequest(req: AppwriteRequest): Request {
   const hasBody = req.method !== 'GET' && req.method !== 'HEAD'
-  return new Request(req.url, {
+  const url = new URL(req.url)
+  const isLocal = url.hostname === 'localhost' || url.hostname.endsWith('.localhost')
+  if (!isLocal) url.protocol = 'https'
+  return new Request(url, {
     method: req.method,
     headers: req.headers,
     body: hasBody ? new Uint8Array(req.bodyBinary) : undefined,

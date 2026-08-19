@@ -27,7 +27,7 @@ async function embed(text: string): Promise<number[]> {
   const embeddings = services.embeddings(adminClient())
   const result = await embeddings.createTextEmbeddings({
     texts: [text],
-    model: EmbeddingModel.Bgesmall,
+    model: EmbeddingModel.Allminilm,
   })
   const first = result.embeddings[0]
   if (!first || first.error || first.embedding.length === 0) {

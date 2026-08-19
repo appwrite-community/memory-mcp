@@ -19,9 +19,9 @@ import {
 export const DATABASE_ID = 'recall'
 export const COLLECTION_ID = 'memories'
 
-// bge-small produces 384-dimension vectors: small enough to query quickly and
+// all-minilm produces 384-dimension vectors: small enough to query quickly and
 // plenty for short personal notes.
-const MODEL = EmbeddingModel.Bgesmall
+const MODEL = EmbeddingModel.Allminilm
 
 export type MemoryMetadata = {
   userId: string
