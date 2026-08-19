@@ -1,0 +1,6 @@
+packages:
+  - apps/*
+  - functions/*
+allowBuilds:
+  esbuild: true
+  lightningcss: true

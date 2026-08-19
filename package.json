@@ -1,0 +1,10 @@
+{
+  "name": "memory-mcp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter recall dev",
+    "build:mcp": "pnpm --filter memory-mcp build",
+    "deploy:mcp": "appwrite push function --function-id memory-mcp --force --activate"
+  }
+}

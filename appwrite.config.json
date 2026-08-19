@@ -1,0 +1,19 @@
+{
+  "projectId": "recall",
+  "endpoint": "http://localhost/v1",
+  "functions": [
+    {
+      "$id": "memory-mcp",
+      "name": "Recall MCP",
+      "runtime": "node-22",
+      "execute": ["any"],
+      "scopes": ["documents.read", "documents.write", "embeddings.write"],
+      "entrypoint": "dist/main.js",
+      "commands": "npm install && npm run build",
+      "path": "functions/memory-mcp",
+      "specification": "s-0.5vcpu-512mb",
+      "timeout": 30,
+      "logging": true
+    }
+  ]
+}
